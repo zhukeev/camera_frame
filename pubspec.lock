@@ -109,20 +109,20 @@ packages:
     dependency: "direct main"
     description:
       name: camera_android_frame
-      sha256: "8e61189cb1a2c22c46e23ad795d8a3dd7ac896b75c2710a90231e93e78b1cc24"
+      sha256: a920b5f6df8931fc0bbe217545d24b3cfc061a3353046a544645dd15ca3dc911
       url: "https://pub.dev"
     source: hosted
-    version: "0.10.19"
+    version: "0.10.20"
   camera_avfoundation_frame:
     dependency: "direct main"
     description:
       name: camera_avfoundation_frame
-      sha256: "2de07ad9a611b36b21a3345de267baaefe84158424181891acd04f7d74f316a4"
+      sha256: c25bc42bdb518e7db168f0c41c1bf8e4e826c032862595d6295c8c654a4519ba
       url: "https://pub.dev"
     source: hosted
-    version: "0.9.20+9"
+    version: "0.9.20+10"
   camera_platform_interface_frame:
-    dependency: "direct overridden"
+    dependency: "direct main"
     description:
       name: camera_platform_interface_frame
       sha256: b7dc56e426bde73605e9cec3ba54df1551f6e0a9f8a4945e614bc86509e63b7c
