@@ -5,7 +5,7 @@ description: A Flutter plugin for controlling the camera. Supports previewing
 repository: https://github.com/zhukeev/camera_frame
 issue_tracker: https://github.com/zhukeev/camera_frame/issues
 
-version: 0.11.2
+version: 0.0.1
 
 environment:
   sdk: ^3.7.0
@@ -37,4 +37,4 @@ dev_dependencies:
 
 topics:
   - camera
-  - camera_frame
+  - frame
