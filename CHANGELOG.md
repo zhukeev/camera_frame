@@ -1,6 +1,10 @@
 ## NEXT
 
-* Updates minimum supported SDK version to Flutter 3.29/Dart 3.7.
+## 0.11.3
+
+* Adds global `frameFps` to control how often the **last-frame cache** refreshes and how often frames are delivered to `startListenFrames` (Android: `VideoCaptureSettings.frameFps`, iOS: `mediaSettings.frameFps`). Does not change preview or recording FPS.
+* Introduces `LastFrameStore.setFrameFps(...)` on both platforms.
+* Docs: README updated to document `frameFps` behavior.
 
 ## 0.11.2
 

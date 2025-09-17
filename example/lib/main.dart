@@ -6,7 +6,6 @@ import 'dart:async';
 import 'dart:io';
 
 import 'package:camera_frame/camera_frame.dart';
-import 'package:camera_platform_interface_frame/camera_platform_interface_frame.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
@@ -217,7 +216,7 @@ class _CameraExampleHomeState extends State<CameraExampleHome>
       _minAvailableZoom,
       _maxAvailableZoom,
     );
-    
+
     await controller!.setZoomLevel(_currentScale);
   }
 

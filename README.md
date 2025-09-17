@@ -26,7 +26,15 @@ A set of small, practical extensions on top of the official `camera` plugin, kep
 
 ### 3) Android implementation
 - Compatible `capturePreviewFrameJpeg` based on `ImageReader`.
-- Upstream code style preserved (google-java-format / ktlint) to keep diffs clean.
+- Upstream code style preserved to keep diffs clean.
+
+> **Note — `frameFps` (Android & iOS):** optional global limit that controls  
+> (a) how often the internal **last-frame cache is refreshed**, and  
+> (b) how often frames are **delivered to `startListenFrames`**.  
+> It **does not** change the live camera preview or video recording FPS.  
+> Configure it before starting preview/streaming:
+> - **Android:** `VideoCaptureSettings.frameFps` (`Integer?`, `null` = unlimited).
+> - **iOS:** `mediaSettings.frameFps` (`NSNumber?`, `nil` = internal conservative default).
 
 ---
 
@@ -52,6 +60,9 @@ final String saved = await cameraController.capturePreviewFrameJpeg(
   quality: 85,         // optional
 );
 ```
+
+> Optional: set `frameFps` before opening/starting the camera to limit how often the **last-frame cache** refreshes and how often frames are **delivered to `startListenFrames`**.  
+> Android: via `VideoCaptureSettings.frameFps`. iOS: via `mediaSettings.frameFps`.
 
 ---
 
@@ -81,9 +92,8 @@ Converts an existing `CameraImageData` (e.g. from `capturePreviewFrame` or your 
 ### `Future<void> startListenFrames({ void Function(CameraImageData image)? frameCallback })`
 Starts **preview frame streaming** to Dart.  
 - If `frameCallback` is provided, it’s invoked for each frame (`CameraImageData`).  
-- Designed for lightweight per-frame consumers (analytics/ML). Runs alongside preview/recording.
-
----
+- Designed for lightweight per-frame consumers (analytics/ML). Runs alongside preview/recording.  
+- **Respects the configured `frameFps`** (limits delivery rate if set).
 
 ### `Future<void> stopListenFrames()`
 Stops the stream started by `startListenFrames`.
@@ -97,6 +107,15 @@ Stops the stream started by `startListenFrames`.
   - iOS: `kCVPixelFormatType_420YpCbCr8BiPlanarFullRange` (NV12), `kCVPixelFormatType_32BGRA`.
   - Android: standard `ImageReader` YUV/BGRA sources.
 - Snapshot and streaming APIs do **not** pause preview or video recording.
+
+---
+
+## Performance & thermals
+
+- Configure `frameFps` (e.g., 10–20) to reduce CPU/GPU load and device heat.  
+- iOS uses `alwaysDiscardsLateVideoFrames = true` on the video data output.  
+- Internally we avoid duplicate copies; the “last frame” cache is tightly packed (NV12/BGRA).  
+- On Android we use `acquireLatestImage()` to avoid back-pressure buildup.
 
 ---
 

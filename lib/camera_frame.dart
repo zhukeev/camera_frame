@@ -16,5 +16,6 @@ export 'package:camera_platform_interface_frame/camera_platform_interface_frame.
         CameraController,
         availableCameras,
         CameraPreview,
+        MediaSettings,
         CameraImageData,
         XFile;
