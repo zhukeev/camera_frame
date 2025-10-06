@@ -1,5 +1,9 @@
 ## NEXT
 
+## 0.11.4
+
+* Android: Frames are now use `captureSize` not `previewSize`. 
+
 ## 0.11.3
 
 * Adds global `frameFps` to control how often the **last-frame cache** refreshes and how often frames are delivered to `startListenFrames` (Android: `VideoCaptureSettings.frameFps`, iOS: `mediaSettings.frameFps`). Does not change preview or recording FPS.
